@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "Coin")
 @Data
-@EqualsAndHashCode
 public class Coin {
 
 	@Id

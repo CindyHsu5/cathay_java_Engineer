@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 @IdClass(BPIPk.class)
 @Table(name = "BPI")
 @Data
-@EqualsAndHashCode
 public class BPI {
 	
 	@Id
