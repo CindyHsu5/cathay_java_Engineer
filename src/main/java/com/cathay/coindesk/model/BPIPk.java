@@ -2,6 +2,11 @@ package com.cathay.coindesk.model;
 
 import java.io.Serializable;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode
 public class BPIPk implements Serializable{
 	
 	/**
@@ -12,21 +17,5 @@ public class BPIPk implements Serializable{
 	private String coin;
 	
 	private String code;
-
-	public String getCoin() {
-		return coin;
-	}
-
-	public void setCoin(String coin) {
-		this.coin = coin;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	} 
 
 }

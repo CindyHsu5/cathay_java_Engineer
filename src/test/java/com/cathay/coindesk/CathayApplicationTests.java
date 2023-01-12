@@ -1,9 +1,13 @@
 package com.cathay.coindesk;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.cathay.coindesk.model.BPI;
+import com.cathay.coindesk.model.Coin;
 import com.cathay.coindesk.model.CoinRequest;
 import com.cathay.coindesk.model.CoinResponse;
 import com.cathay.coindesk.repository.BPIRepository;
@@ -38,15 +43,6 @@ class CathayApplicationTests {
 	 */
 	@Test
 	void serviceDoCoinQueryTest() {
-		// 存進DB
-//		Coin coin = new Coin("Bitcoin", "比特幣",
-//				"The data was produced from the CoinDesk Bitcoin Price Index (USD). 比特幣");
-//		coinRepository.save(coin);
-//		BPI element1 = new BPI("Bitcoin", "GBP", "&pound;", "14,150.1522", "British Pound Sterling", 14150.1522);
-//		BPI element2 = new BPI("Bitcoin", "EUR", "&euro;", "16,496.4650", "Euro", 16496.465);
-//		bpiRepository.save(element1);
-//		bpiRepository.save(element2);
-
 		CoinRequest req = new CoinRequest();
 		req.setChartName("Bitcoin");
 
@@ -100,8 +96,18 @@ class CathayApplicationTests {
 		req.setBpi(bpiMap);
 
 		CoinResponse actualRes = coindeskService.updateCoin(req);
-
-		Assert.assertEquals("Bitcoin", actualRes.getChartName());
+		
+		CoinResponse expectedRes = new CoinResponse();
+		expectedRes.setDisclaimer("Non-USD currency data converted using hourly conversion rate from openexchangerates.org");
+		expectedRes.setChartName("Bitcoin");
+		expectedRes.setMandarinName("特比幣");
+		expectedRes.setBpi(bpiMap);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		String dateString = formatter.format(new Date());
+		expectedRes.setTime(dateString);
+		
+		Assert.assertEquals(expectedRes, actualRes);
 	}
 
 	/***
