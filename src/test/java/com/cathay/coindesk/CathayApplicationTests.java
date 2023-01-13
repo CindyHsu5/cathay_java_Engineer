@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,7 +24,10 @@ import com.cathay.coindesk.repository.BPIRepository;
 import com.cathay.coindesk.repository.CoinRepository;
 import com.cathay.coindesk.service.CoindeskService;
 
+import lombok.extern.log4j.Log4j2;
+
 @SpringBootTest
+@Log4j2
 class CathayApplicationTests {
 
 	@Autowired
@@ -36,8 +39,21 @@ class CathayApplicationTests {
 	@Autowired
 	BPIRepository bpiRepository;
 
-	boolean hasDataFlag = false; // DB has Data = true
+	boolean hasDataFlag = true; // DB has Data = true
 
+	@BeforeEach
+    void setup(){ // 存DB
+		Coin coin = new Coin("Bitcoin", "比特幣", "The data was produced from the CoinDesk Bitcoin Price Index (USD). 比特幣");
+		coin.setTime(new Date());
+		coinRepository.save(coin);
+		
+		BPI element1 = new BPI("Bitcoin", "GBP", "&pound;", "14,150.1522", "British Pound Sterling", 14150.1522);
+		BPI element2 = new BPI("Bitcoin", "EUR", "&euro;", "16,496.4650", "Euro", 16496.465);
+		bpiRepository.save(element1);
+		bpiRepository.save(element2);
+    }
+	
+	
 	/***
 	 * 查詢幣別對應表資料API，並顯示其內容
 	 */
@@ -45,7 +61,6 @@ class CathayApplicationTests {
 	void serviceDoCoinQueryTest() {
 		CoinRequest req = new CoinRequest();
 		req.setChartName("Bitcoin");
-
 		CoinResponse actualRes = coindeskService.doCoinQuery(req);
 		if(hasDataFlag) {
 			Assert.assertEquals("Bitcoin", actualRes.getChartName());

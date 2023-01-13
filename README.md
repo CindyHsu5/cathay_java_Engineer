@@ -12,10 +12,9 @@ A simple database service for maintaining coins
 - 資料庫:H2(OpenJPA / Spring Data JPA)
 
 ## API URLs
-1.
- POST http://localhost:9100/cathay/coin/doCoinQuery 查詢幣別對應表資料API，並顯示其內容。
+- 1. POST http://localhost:9100/cathay/coin/doCoinQuery 查詢幣別對應表資料API，並顯示其內容。
 
-    Examples
+    Examples:
         
         Request 
 	        {
@@ -57,10 +56,9 @@ A simple database service for maintaining coins
 			}
 		       
 
-2.
- POST http://localhost:9100/cathay/coin/createCoin 新增幣別對應表資料API。
+- 2. POST http://localhost:9100/cathay/coin/createCoin 新增幣別對應表資料API。
 
-    Examples
+    Examples:
         
         Request 
 	        {
@@ -87,10 +85,9 @@ A simple database service for maintaining coins
 			}
 	 
 		      
-3.
- POST http://localhost:9100/cathay/coin/updateCoin 更新幣別對應表資料API，並顯示其內容。
+- 3. POST http://localhost:9100/cathay/coin/updateCoin 更新幣別對應表資料API，並顯示其內容。
  
-    Examples
+    Examples:
         
         Request 
 	        {
@@ -137,10 +134,9 @@ A simple database service for maintaining coins
 			    }
 			}
 		       
-4.
- POST http://localhost:9100/cathay/coin/deleteCoin 刪除幣別對應表資料API。
+- 4. POST http://localhost:9100/cathay/coin/deleteCoin 刪除幣別對應表資料API。
  
-    Examples
+    Examples:
         
         Request 
 	        {
@@ -148,10 +144,9 @@ A simple database service for maintaining coins
 	        }
 	 
 		      
-5.
- GET http://localhost:9100/cathay/coin/callCoindeskAPI 呼叫coindesk API，並顯示其內容。
+- 5. GET http://localhost:9100/cathay/coin/callCoindeskAPI 呼叫coindesk API，並顯示其內容。
  	
-    Examples
+    Examples:
              
         Response
 	        {
@@ -187,10 +182,9 @@ A simple database service for maintaining coins
 			    }
 			}
 			
-6.
- GET http://localhost:9100/cathay/coin/convertData 資料轉換的API，並顯示其內容。
+- 6. GET http://localhost:9100/cathay/coin/convertData 資料轉換的API，並顯示其內容。
   	
-    Examples
+    Examples:
              
         Response
 	        {
