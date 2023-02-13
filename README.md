@@ -1,4 +1,4 @@
-# cathay_java_Engineer
+# coins_cathay
 
 ## About
 A simple database service for maintaining coins
