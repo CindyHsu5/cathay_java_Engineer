@@ -1,4 +1,4 @@
-# coins_cathay
+# coins
 
 ## About
 A simple database service for maintaining coins
